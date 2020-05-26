@@ -4,4 +4,7 @@ class UserNote < ApplicationRecord
   belongs_to :user
   belongs_to :note
 
+  # Enums
+  enum role: [:owner, :contributor, :reader]
+
 end
