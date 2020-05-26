@@ -1,0 +1,15 @@
+<div style="padding: 2%;">
+  <%= form_for [@note] do |f|  %>
+    <div class="col-md-12">
+      <div class="form-group col-md-3">
+        <%= f.text_area :description, :placeholder => "Jot down your thoughts!!", :required => true, :style => "width: 300px; height:300px;" %>
+      </div>
+    </div>
+
+    <div class="col-md-12 no-padding">
+      <div class="form-group col-md-4">
+        <%= f.submit "Save", :class => "btn btn-primary form-control", :id => "save_ambulance_location" %>
+      </div>
+    </div>
+  <% end %>
+</div>

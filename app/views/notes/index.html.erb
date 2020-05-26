@@ -1,0 +1,46 @@
+<table class="table table-hover table-bordered">
+  <%= link_to "Add New Note", new_note_path, class: "btn", style: "float:right;margin: 15px 0px;" %>
+  <thead>
+    <th>Description</th>
+    <th>Owner</th>
+    <th>Contributor</th>
+    <th>Reader</th>
+    <th>Edit</th>
+    <th>Delete</th>
+
+  </thead>
+  <% @notes.each do |note| %>
+    <tr>
+      <td>
+        <%= note.description %>
+      </td>
+      <% user_role = note.find_role(current_user.id) %>
+      <% UserNote::roles.each do |role,index| %>
+        <% if user_role == role %>
+          <td>
+            <%= image_tag "tick.jpeg", style: "width:30px;height:30px;" %>
+          </td>
+        <% else %>
+          <td></td>
+        <% end %>
+      <% end %>
+      <td>
+        <% if policy(note).update? %>
+          <%= link_to "Edit", edit_note_path(note.id), class: "btn" %>
+        <% end %>
+      </td>
+      <td>
+        <% if policy(note).destroy? %>
+          <%= link_to 'Delete', note_path(note.id), method: :delete, data:
+           { confirm: "Are You Sure?" }, remote: true, :class => "btn" %>
+        <% end %>
+      </td>
+    </tr>
+  <% end %>
+</table>
+
+<style>
+  .btn {
+    background-color:#79899ab0;
+  }
+</style>
