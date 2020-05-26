@@ -1,0 +1,53 @@
+class NotesController < ApplicationController
+  before_action :set_note, only: [:edit, :update, :destroy]
+
+  def index
+    @notes = policy_scope(Note)
+  end
+  
+  def new
+    @note = Note.new
+  end
+
+  def create
+    @note = Note.new(notes_params)
+    if @note.save
+      current_user.user_notes.create(note_id: @note.id, role: UserNote::roles.first[0])
+      respond_to do |format|
+        format.html { redirect_to notes_path, notice: 'Note was successfully created.' }
+      end
+    else
+      render 'edit'
+    end
+  end
+
+  def edit
+  end
+
+  def update
+    if @note.update_attributes(notes_params)
+      respond_to do |format|
+        format.html { redirect_to notes_path, notice: 'Note was successfully updated.' }
+      end
+    else
+      render 'edit'
+    end
+  end
+
+  def destroy
+    @note.destroy()
+    redirect_to notes_path, notice: 'Note was successfully deleted.'
+  end
+
+  private
+
+  def notes_params
+    params.require(:note).permit(:description)
+  end
+
+  def set_note
+    @note = Note.find(params[:id])
+    authorize @note
+  end
+
+end
