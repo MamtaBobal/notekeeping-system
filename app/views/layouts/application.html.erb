@@ -10,6 +10,15 @@
   </head>
 
   <body>
-    <%= yield %>
+    <%= render :partial => 'shared/navbar' %>
+    <div class="container">
+      <% if flash[:notice] %>
+        <div class="alert alert-info"><%= notice %></div>
+      <% end %>
+      <% if flash[:alert] %>
+        <div class="alert alert-waring"><%= alert %></div>
+      <% end %>
+      <%= yield %>
+    </div>
   </body>
 </html>

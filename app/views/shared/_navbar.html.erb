@@ -1,0 +1,36 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <%= link_to 'Note Keeping System', "#", class: "button is-info" %>
+  <div class="navbar-collapse collapse" id="collapsingNavbar">
+    <ul class="navbar-nav ml-auto">
+      <% if user_signed_in? %> 
+        <li class="nav-item">
+          <%= link_to current_user.name, edit_user_registration_path, class: "button is-info" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to 'Logout', destroy_user_session_path, method: :delete, class: "button is-info" %>
+        </li>
+      <% else %>
+        <li class="nav-item">
+          <%= link_to 'LogIn', new_user_session_path, class: "button is-info" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to 'SignUp', new_user_registration_path, class: "button is-info" %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</nav>
+
+<style type="text/css">
+  .navbar {
+    background-color: #cbdbde !important;
+    border-radius: 0px !important;
+    margin-bottom: 15px;
+  }
+  a {
+    color: white;
+  }
+  .nav-item {
+    margin: 5px;
+  }
+</style>
