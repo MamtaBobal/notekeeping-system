@@ -1,3 +1,14 @@
+# == Schema Information
+#
+# Table name: user_notes
+#
+#  id         :integer          not null, primary key
+#  user_id    :integer
+#  note_id    :integer
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#  role       :integer
+#
 require 'rails_helper'
 
 RSpec.describe UserNote, type: :model do
