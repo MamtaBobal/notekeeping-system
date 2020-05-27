@@ -28,7 +28,7 @@ class NotesController < ApplicationController
   end
 
   def update
-    if @note.update_attributes(notes_params)
+    if @note.update(notes_params)
       respond_to do |format|
         format.html { redirect_to notes_path, notice: 'Note was successfully updated.' }
       end
