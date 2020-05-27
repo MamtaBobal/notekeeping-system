@@ -7,6 +7,7 @@
     <th>Reader</th>
     <th>Edit</th>
     <th>Delete</th>
+    <th>Share</th>
 
   </thead>
   <% @notes.each do |note| %>
@@ -35,12 +36,11 @@
            { confirm: "Are You Sure?" }, remote: true, :class => "btn" %>
         <% end %>
       </td>
+      <td>
+        <% if policy(note).destroy? %>
+          <%= link_to 'Share', note_users_path(note.id), class: "btn" %>
+        <% end %>
+      </td>
     </tr>
   <% end %>
 </table>
-
-<style>
-  .btn {
-    background-color:#79899ab0;
-  }
-</style>
