@@ -7,7 +7,7 @@ class NotePolicy
   end
 
   def show?
-    ["owner", "contributor", "reader"].include?(@note.find_role(@user.id))
+    ["owner", "contributor", "reader"].include?(get_note_role)
   end
 
   def edit?
@@ -15,11 +15,15 @@ class NotePolicy
   end
 
   def update?
-    ["owner", "contributor"].include?(@note.find_role(@user.id))
+    ["owner", "contributor"].include?(get_note_role)
   end
 
   def destroy?
-    ["owner"].include?(@note.find_role(@user.id))
+    ["owner"].include?(get_note_role)
+  end
+
+  def get_note_role
+    @note.find_role(@user.id)
   end
 
   class Scope
