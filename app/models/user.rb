@@ -5,7 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   # Associations
-  has_many :user_notes
-  has_many :notes, through: :user_notes
+  has_many :user_notes, dependent: :destroy
+  has_many :notes, through: :user_notes, dependent: :destroy
 
 end

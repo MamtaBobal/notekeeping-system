@@ -4,7 +4,7 @@ class Note < ApplicationRecord
   validates :description, presence: true
 
   # Associations
-  has_many :user_notes
+  has_many :user_notes, dependent: :destroy
   has_many :users, through: :user_notes
 
   # find role of user
