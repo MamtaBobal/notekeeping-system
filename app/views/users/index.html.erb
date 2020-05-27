@@ -1,0 +1,30 @@
+<h3>Users List</h3>
+
+<table class="table table-hover table-bordered">
+  <thead>
+    <th>Email</th>
+    <th>Contributor</th>
+    <th>Reader</th>
+  </thead>
+  <% @users.each do |user| %>
+  <tr>
+    <td>
+      <%= user.email %>
+    </td>
+    <td>
+      <% if Note.find(params[:note_id]).find_role(user.id) == "contributor" %>
+        <%= link_to 'Remove Contributor', remove_contributor_path(:note_id => params[:note_id], :user_id => user.id), method: :delete, data: { confirm: "Are you sure?" }, remote: true, :class => "btn" %>
+      <% else %>
+        <%= link_to 'Add As Contributor', add_contributor_path(:note_id => params[:note_id], :user_id => user.id, :role => "contributor"), method: :post, data: { confirm: "Are you sure?" }, remote: true, :class => "btn" %>
+      <% end %>
+    </td>
+    <td>
+      <% if Note.find(params[:note_id]).find_role(user.id) == "reader" %>
+        <%= link_to 'Remove Reader', remove_contributor_path(:note_id => params[:note_id], :user_id => user.id), method: :delete, data: { confirm: "Are you sure?" }, remote: true, :class => "btn" %>
+      <% else %>
+        <%= link_to 'Add As Reader', add_contributor_path(:note_id => params[:note_id], :user_id => user.id, :role => "reader"), method: :post, data: { confirm: "Are you sure?" }, remote: true, :class => "btn" %>
+      <% end %>
+    </td>
+  </tr>
+  <% end %>
+</table>

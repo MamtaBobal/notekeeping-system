@@ -5,6 +5,7 @@
     <th>Owner</th>
     <th>Contributor</th>
     <th>Reader</th>
+    <th>Show</th>
     <th>Edit</th>
     <th>Delete</th>
     <th>Share</th>
@@ -26,21 +27,33 @@
         <% end %>
       <% end %>
       <td>
+        <% if policy(note).show? %>
+          <%= link_to "show", note_path(note.id), class: "btn" %>
+        <% end %>
+      </td>
+      <td>
         <% if policy(note).update? %>
           <%= link_to "Edit", edit_note_path(note.id), class: "btn" %>
         <% end %>
       </td>
-      <td>
-        <% if policy(note).destroy? %>
-          <%= link_to 'Delete', note_path(note.id), method: :delete, data:
-           { confirm: "Are You Sure?" }, remote: true, :class => "btn" %>
-        <% end %>
-      </td>
-      <td>
-        <% if policy(note).destroy? %>
+      <!-- Owner is able to destroy and share note only -->
+      <% if policy(note).destroy? %>
+        <td>
+          <%= link_to 'Delete', note_path(note.id), method: :delete, data: { confirm: "Are You Sure?" }, remote: true, :class => "btn" %>
+        </td>
+        <td>
           <%= link_to 'Share', note_users_path(note.id), class: "btn" %>
-        <% end %>
-      </td>
+        </td>
+      <% end %>
     </tr>
   <% end %>
 </table>
+
+<style>
+  td {
+    max-width: 100px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+</style>

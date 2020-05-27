@@ -1,5 +1,5 @@
 class NotesController < ApplicationController
-  before_action :set_note, only: [:edit, :update, :destroy]
+  before_action :set_note, only: [:show, :edit, :update, :destroy]
 
   def index
     @notes = policy_scope(Note)
@@ -7,6 +7,9 @@ class NotesController < ApplicationController
   
   def new
     @note = Note.new
+  end
+
+  def show
   end
 
   def create

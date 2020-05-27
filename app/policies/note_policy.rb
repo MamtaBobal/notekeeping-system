@@ -6,18 +6,20 @@ class NotePolicy
     @note = note
   end
 
+  def show?
+    ["owner", "contributor", "reader"].include?(@note.find_role(@user.id))
+  end
+
   def edit?
     update?
   end
 
   def update?
-    user_role = @user.user_notes.where(note_id: @note.id).first
-    ["owner", "contributor"].include?(user_role.role)
+    ["owner", "contributor"].include?(@note.find_role(@user.id))
   end
 
   def destroy?
-    user_role = @user.user_notes.where(note_id: @note.id).first
-    ["owner"].include?(user_role.role)
+    ["owner"].include?(@note.find_role(@user.id))
   end
 
   class Scope
