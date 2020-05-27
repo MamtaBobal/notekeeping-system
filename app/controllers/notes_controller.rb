@@ -15,7 +15,7 @@ class NotesController < ApplicationController
   def create
     @note = Note.new(notes_params)
     if @note.save
-      current_user.user_notes.create(note_id: @note.id, role: UserNote::roles.first[0])
+      current_user.user_notes.create(note_id: @note.id, role: UserNote::roles.invert[0])
       respond_to do |format|
         format.html { redirect_to notes_path, notice: 'Note was successfully created.' }
       end

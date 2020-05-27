@@ -6,8 +6,8 @@ class UserNotesController < ApplicationController
   end
 
   def destroy
-    @user_event = UserNote.where(:user_id => params[:user_id], :note_id => params[:note_id]).first
-    @user_event.destroy()
+    @user_note = UserNote.where(:user_id => params[:user_id], :note_id => params[:note_id]).first
+    @user_note.destroy()
     render js: "window.location.reload()" and return
   end
 
