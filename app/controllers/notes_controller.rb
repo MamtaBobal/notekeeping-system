@@ -2,7 +2,7 @@ class NotesController < ApplicationController
   before_action :set_note, only: [:show, :edit, :update, :destroy]
 
   def index
-    @notes = policy_scope(Note)
+    @notes = policy_scope(Note).paginate(page: params[:page], per_page: 15)
   end
   
   def new

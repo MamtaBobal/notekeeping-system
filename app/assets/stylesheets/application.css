@@ -22,3 +22,9 @@
 .btn {
   background-color:#79899ab0;
 }
+
+.pagination > a {
+  padding: 4px 6px;
+  color: #555;
+  font-size: 13px;
+}
