@@ -11,6 +11,9 @@
 #
 class UserNote < ApplicationRecord
 
+  # Validations
+  validates :role, presence: true
+
   # Associations
   belongs_to :user
   belongs_to :note

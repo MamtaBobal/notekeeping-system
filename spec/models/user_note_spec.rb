@@ -23,6 +23,10 @@ RSpec.describe UserNote, type: :model do
     end
   end
 
+  context "validations" do
+    it { should validate_presence_of(:role) }
+  end
+
   context "associations" do
     it { expect(user_note).to belong_to(:note) }
     it { expect(user_note).to belong_to(:user) }
