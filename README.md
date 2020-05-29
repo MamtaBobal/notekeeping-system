@@ -1,24 +1,33 @@
-# README
+== README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+# NoteKeeping System
 
-Things you may want to cover:
+This is a simple ruby on rails application which displays a bunch of notes created by the user. Users can register or login. User can create a note, he will become the owner of the note. He can share his notes with other users, and add them as a contributor or reader.
+Permissions are as follows-
+Owner of note - create, read, update, delete and share
+Contributor of note - read and update
+Reader of note - only read
 
-* Ruby version
+## Dependencies
+            * Ruby Version    : 2.7.0
+            * Rails           : 6.0.3.1
+            * Bootstrap
+            * RSpec
 
-* System dependencies
+## Installation
+            $ git clone git@github.com:MamtaBobal/notekeeping-system.git
+            $ bundle install
+            $ rake db:create
+            $ rake db:migrate
+            $ rake db:seed
+            $ rails server
 
-* Configuration
+## Tests
+            $ rspec
 
-* Database creation
+## Credentials
+###### Email: test@gmail.com
+###### Password: 123456
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## Heroku link
+###### https://online-notekeeping-system.herokuapp.com/users/sign_in
