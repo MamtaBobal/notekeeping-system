@@ -8,6 +8,8 @@
 
 require 'faker'
 
+User.create(email: "test@gmail.com", password: 123456)
+
 600.times do |i|
   User.create(
                email: Faker::Internet.email,
