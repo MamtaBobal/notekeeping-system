@@ -17,13 +17,13 @@ User.create(email: "test@gmail.com", password: 123456)
              )
 end
 
-3000.times do |i|
+2000.times do |i|
   Note.create(
                 description: Faker::Movies::StarWars.quote
               )
 end
 
-3000.times do |i|
+1000.times do |i|
   begin UserNote.create(user_id: rand(1..200), note_id: rand(1..100), role: UserNote::roles.invert[0])
   rescue => error
     next
